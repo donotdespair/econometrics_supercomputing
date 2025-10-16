@@ -22,6 +22,10 @@ execute:
 #| echo: false
 blu = "#bf3eff"
 yel = "#68218a"
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = FALSE
+)
 ```
 
 
@@ -30,16 +34,21 @@ yel = "#68218a"
 ![](hpc.png){.absolute top=40 right=275 width="500"}
 
 
-## <span style='color: #68218a;'>This session</span> {background-color="#bf3eff"}
+## <span style='color: #68218a;'>this session</span> {background-color="#bf3eff"}
+
+### vibes 
 
 * share the joy of using HPC for statistical computing
-* share my workflows and practices
+* share my workflows and practices `R/bash/slurm`
 * two strategies for parallel computations
 
+### materials
 
+* [slides](https://donotdespair.github.io/econometrics_supercomputing/)
+* [GitHub repo](https://github.com/donotdespair/econometrics_supercomputing)
+* [file download](https://github.com/donotdespair/econometrics_supercomputing/tree/master/bsvars)
 
-
-## <span style='color: #68218a;'>About me</span> {background-color="#bf3eff"}
+## <span style='color: #68218a;'>about me</span> {background-color="#bf3eff"}
 
 [Tomasz Woźniak](https://github.com/donotdespair)
 
@@ -50,7 +59,7 @@ yel = "#68218a"
 
 
 
-## <span style='color: #68218a;'>About me</span> {background-color="#bf3eff"}
+## <span style='color: #68218a;'>about me</span> {background-color="#bf3eff"}
 
 [Tomasz Woźniak](https://github.com/donotdespair)
 
@@ -69,7 +78,193 @@ yel = "#68218a"
 
 
 
+# <span style='color: #68218a;'>the first steps</span> {background-color="#bf3eff"}
 
+## <span style='color: #68218a;'>the first steps</span> {background-color="#bf3eff"}
+
+### Connect to `spartan` and set up the folder
+
+```{bash eval=FALSE}
+ssh twozniak@spartan.hpc.unimelb.edu.au             # connect and type password
+cd /data/projects/punim0093/                        # choose your dir
+mkdir bsvars                                        # create a new dir
+```
+
+### Install `R` packages
+
+```{bash eval=FALSE}
+source ~/.bash-profile                              # this is where the password is stored
+sshpass -e ssh twozniak@spartan.hpc.unimelb.edu.au  # connect without typing password
+sinteractive                                        # open interactive session
+module load R/4.5.0                                 # load R
+R                                                   # open R
+install.packages("bsvars")                          # install the package
+q("no")                                             # quit R
+exit                                                # exit interactive session
+```
+
+
+# <span style='color: #68218a;'>basic workflow</span> {background-color="#bf3eff"}
+
+## <span style='color: #68218a;'>basic workflow</span> {background-color="#bf3eff"}
+
+
+### The `slurm` file: `bsvar1.slurm`
+```{bash eval=FALSE}
+#!/bin/bash
+
+#SBATCH -p cascade
+#SBATCH --time=10:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --mem=8192
+#SBATCH --mail-user=twozniak@unimelb.edu.au
+#SBATCH --mail-type=ALL
+#SBATCH --job-name='bsvar1'
+
+module load R/4.5.0
+Rscript bsvar1.R
+```
+
+
+### The `R` file: `bsvar1.R`
+
+```{r eval=FALSE}
+set.seed(123)                                       # set seed for reproducibility
+library(bsvars)                                     # load the package      
+
+us_fiscal_lsuw |>                                   # use the data
+  specify_bsvar$new() |>                            # specify the model
+  estimate(S = 100) |>                              # initial estimation
+  estimate(S = 1000) ->                             # final estimation
+  post                                              # store final estimation output
+
+save(                                               # save the output
+  post,                                             # chose post object
+  file = paste0("bsvar1.rda")                       # file name
+)
+```
+
+
+
+
+## <span style='color: #68218a;'>basic workflow</span> {background-color="#bf3eff"}
+
+
+### The workflow: `bsvars.sh`
+```{bash eval=FALSE}
+# upload files
+sshpass -e scp bsvars/bsvar1.* twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/ 
+
+sshpass -e ssh twozniak@spartan.hpc.unimelb.edu.au  # connect 
+cd /data/projects/punim0093/bsvars/                 # go to the folder
+
+sbatch bsvar1.slurm                                 # submit the job     
+squeue -u twozniak                                  # check the queue
+
+# download files
+scp twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/*.rda bsvars/
+```
+
+### summary
+
+* great for individual tasks
+* it's a single-core job
+* send many many jobs at once'
+* better double-check your code first
+
+
+
+
+
+
+
+# <span style='color: #68218a;'>parallel computations using array jobs</span> {background-color="#bf3eff"}
+
+## <span style='color: #68218a;'>parallel computations using array jobs</span> {background-color="#bf3eff"}
+
+### The `slurm` file: `bsvars.slurm`
+```{bash eval=FALSE}
+#!/bin/bash
+
+#SBATCH -p cascade
+#SBATCH --time=10:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --mem=8192
+#SBATCH --mail-user=twozniak@unimelb.edu.au
+#SBATCH --mail-type=ALL
+#SBATCH --job-name='bsvars'
+#SBATCH --array=1-10
+
+module load R/4.5.0
+Rscript bsvars.R ${SLURM_ARRAY_TASK_ID}
+```
+
+
+
+
+
+## <span style='color: #68218a;'>parallel computations using array jobs</span> {background-color="#bf3eff"}
+
+### The `R` file: `bsvars.R`
+```{r eval=FALSE}
+args      = commandArgs(trailingOnly = TRUE)  # get arguments
+iteration = as.integer(args[1])               # first argument is iteration
+rm(args)                                      # remove what's redundant
+
+set.seed(123 + iteration)                     # set seed for reproducibility        
+rw = apply(                                   # generate random walk data
+  matrix(rnorm(500), ncol = 2),
+  2,
+  cumsum
+)
+
+library(bsvars)                               # load bsvars package
+
+rw |>                                         # use rw data
+  specify_bsvar$new(                          # specify the model
+    stationary = rep(FALSE, 2)                # customise specification
+  ) |>
+  estimate(S = 100) |>                        # initial estimation
+  estimate(S = 1000) ->                       # final estimation
+  post                                        # store final estimation output
+
+save(                                         # save the output
+  post,                                       # chose post object
+  file = paste0("bsvars_", iteration, ".rda") # file name
+)
+```
+
+
+## <span style='color: #68218a;'>parallel computations using array jobs</span> {background-color="#bf3eff"}
+
+### The workflow: `bsvars.slurm`
+```{bash eval=FALSE}
+sshpass -e scp bsvars/bsvars.* twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/
+
+# working with bsvars on spartan
+#################################################
+sshpass -e ssh twozniak@spartan.hpc.unimelb.edu.au
+cd /data/projects/punim0093/bsvars/
+
+sbatch bsvars.slurm
+squeue -u twozniak
+
+# Download files
+scp twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/*.rda bsvars/
+
+```
+
+
+
+## <span style='color: #68218a;'>what's next</span> {background-color="#bf3eff"}
+
+* submit your first single-core job
+* design and run your first array job
+* attend spartan training sessions
+* reach out for help
+* `praise spartan!`
 
 
 ##  {background-color="#bf3eff"}

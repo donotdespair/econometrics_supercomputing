@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -330,15 +395,22 @@
 <p><img data-src="hpc.png" class="absolute" style="top: 40px; right: 275px; width: 500px; "></p>
 </section>
 <section id="this-session" class="slide level2" data-background-color="#bf3eff">
-<h2><span style="color: #68218a;">This session</span></h2>
+<h2><span style="color: #68218a;">this session</span></h2>
+<h3 id="vibes">vibes</h3>
 <ul>
 <li>share the joy of using HPC for statistical computing</li>
-<li>share my workflows and practices</li>
+<li>share my workflows and practices <code>R/bash/slurm</code></li>
 <li>two strategies for parallel computations</li>
+</ul>
+<h3 id="materials">materials</h3>
+<ul>
+<li><a href="https://donotdespair.github.io/econometrics_supercomputing/">slides</a></li>
+<li><a href="https://github.com/donotdespair/econometrics_supercomputing">GitHub repo</a></li>
+<li><a href="https://github.com/donotdespair/econometrics_supercomputing/tree/master/bsvars">file download</a></li>
 </ul>
 </section>
 <section id="about-me" class="slide level2" data-background-color="#bf3eff">
-<h2><span style="color: #68218a;">About me</span></h2>
+<h2><span style="color: #68218a;">about me</span></h2>
 <p><a href="https://github.com/donotdespair">Tomasz Woźniak</a></p>
 <ul>
 <li>senior lecturer at the department of economics</li>
@@ -348,7 +420,7 @@
 </ul>
 </section>
 <section id="about-me-1" class="slide level2" data-background-color="#bf3eff">
-<h2><span style="color: #68218a;">About me</span></h2>
+<h2><span style="color: #68218a;">about me</span></h2>
 <p><a href="https://github.com/donotdespair">Tomasz Woźniak</a></p>
 <ul>
 <li><strong>R</strong> enthusiast and specialised user for 17 years</li>
@@ -358,13 +430,186 @@
 </ul>
 <p><img data-src="bsvars.org.png" class="absolute" style="top: 350px; right: 675px; width: 250px; "> <img data-src="bsvars.png" class="absolute" style="top: 350px; right: 425px; width: 250px; "> <img data-src="bsvarSIGNs.png" class="absolute" style="top: 350px; right: 175px; width: 250px; "></p>
 </section>
+<section>
+<section id="the-first-steps" class="title-slide slide level1 center" data-background-color="#bf3eff">
+<h1><span style="color: #68218a;">the first steps</span></h1>
+
+</section>
+<section id="the-first-steps-1" class="slide level2" data-background-color="#bf3eff">
+<h2><span style="color: #68218a;">the first steps</span></h2>
+<h3 id="connect-to-spartan-and-set-up-the-folder">Connect to <code>spartan</code> and set up the folder</h3>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-2_d0757e9bba4b46388278bac1827a3702">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">ssh</span> twozniak@spartan.hpc.unimelb.edu.au             <span class="co"># connect and type password</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="bu">cd</span> /data/projects/punim0093/                        <span class="co"># choose your dir</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">mkdir</span> bsvars                                        <span class="co"># create a new dir</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<h3 id="install-r-packages">Install <code>R</code> packages</h3>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-3_773eba93b08dec1c13368b9112ed708d">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="bu">source</span> ~/.bash-profile                              <span class="co"># this is where the password is stored</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="ex">sshpass</span> <span class="at">-e</span> ssh twozniak@spartan.hpc.unimelb.edu.au  <span class="co"># connect without typing password</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="ex">sinteractive</span>                                        <span class="co"># open interactive session</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="ex">module</span> load R/4.5.0                                 <span class="co"># load R</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="ex">R</span>                                                   <span class="co"># open R</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="ex">install.packages</span><span class="er">(</span><span class="st">"bsvars"</span><span class="kw">)</span>                          <span class="co"># install the package</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="ex">q</span><span class="er">(</span><span class="st">"no"</span><span class="kw">)</span>                                             <span class="co"># quit R</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="bu">exit</span>                                                <span class="co"># exit interactive session</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="basic-workflow" class="title-slide slide level1 center" data-background-color="#bf3eff">
+<h1><span style="color: #68218a;">basic workflow</span></h1>
+
+</section>
+<section id="basic-workflow-1" class="slide level2" data-background-color="#bf3eff">
+<h2><span style="color: #68218a;">basic workflow</span></h2>
+<h3 id="the-slurm-file-bsvar1.slurm">The <code>slurm</code> file: <code>bsvar1.slurm</code></h3>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-4_a5250227e5e06ac84354547bc8ec387a">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#SBATCH -p cascade</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#SBATCH --time=10:00:00</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#SBATCH --nodes=1</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#SBATCH --ntasks=1</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#SBATCH --mem=8192</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#SBATCH --mail-user=twozniak@unimelb.edu.au</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#SBATCH --mail-type=ALL</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#SBATCH --job-name='bsvar1'</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="ex">module</span> load R/4.5.0</span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="ex">Rscript</span> bsvar1.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<h3 id="the-r-file-bsvar1.r">The <code>R</code> file: <code>bsvar1.R</code></h3>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-5_954bbf81685e639bf88f901a9d39c752">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)                                       <span class="co"># set seed for reproducibility</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(bsvars)                                     <span class="co"># load the package      </span></span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a>us_fiscal_lsuw <span class="sc">|&gt;</span>                                   <span class="co"># use the data</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  specify_bsvar<span class="sc">$</span><span class="fu">new</span>() <span class="sc">|&gt;</span>                            <span class="co"># specify the model</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">estimate</span>(<span class="at">S =</span> <span class="dv">100</span>) <span class="sc">|&gt;</span>                              <span class="co"># initial estimation</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">estimate</span>(<span class="at">S =</span> <span class="dv">1000</span>) <span class="ot">-&gt;</span>                             <span class="co"># final estimation</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>  post                                              <span class="co"># store final estimation output</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="fu">save</span>(                                               <span class="co"># save the output</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>  post,                                             <span class="co"># chose post object</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="at">file =</span> <span class="fu">paste0</span>(<span class="st">"bsvar1.rda"</span>)                       <span class="co"># file name</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="basic-workflow-2" class="slide level2" data-background-color="#bf3eff">
+<h2><span style="color: #68218a;">basic workflow</span></h2>
+<h3 id="the-workflow-bsvars.sh">The workflow: <code>bsvars.sh</code></h3>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-6_62a4a1c43b73ec306f13659328a7ad60">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># upload files</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">sshpass</span> <span class="at">-e</span> scp bsvars/bsvar1.<span class="pp">*</span> twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/ </span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="ex">sshpass</span> <span class="at">-e</span> ssh twozniak@spartan.hpc.unimelb.edu.au  <span class="co"># connect </span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="bu">cd</span> /data/projects/punim0093/bsvars/                 <span class="co"># go to the folder</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="ex">sbatch</span> bsvar1.slurm                                 <span class="co"># submit the job     </span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="ex">squeue</span> <span class="at">-u</span> twozniak                                  <span class="co"># check the queue</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co"># download files</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="fu">scp</span> twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/<span class="pp">*</span>.rda bsvars/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<h3 id="summary">summary</h3>
+<ul>
+<li>great for individual tasks</li>
+<li>it’s a single-core job</li>
+<li>send many many jobs at once’</li>
+<li>better double-check your code first</li>
+</ul>
+</section></section>
+<section>
+<section id="parallel-computations-using-array-jobs" class="title-slide slide level1 center" data-background-color="#bf3eff">
+<h1><span style="color: #68218a;">parallel computations using array jobs</span></h1>
+
+</section>
+<section id="parallel-computations-using-array-jobs-1" class="slide level2" data-background-color="#bf3eff">
+<h2><span style="color: #68218a;">parallel computations using array jobs</span></h2>
+<h3 id="the-slurm-file-bsvars.slurm">The <code>slurm</code> file: <code>bsvars.slurm</code></h3>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-7_d3c199acbab971264b68365badc22fd1">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#SBATCH -p cascade</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#SBATCH --time=10:00:00</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#SBATCH --nodes=1</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#SBATCH --ntasks=1</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#SBATCH --mem=8192</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#SBATCH --mail-user=twozniak@unimelb.edu.au</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#SBATCH --mail-type=ALL</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#SBATCH --job-name='bsvars'</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#SBATCH --array=1-10</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="ex">module</span> load R/4.5.0</span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="ex">Rscript</span> bsvars.R <span class="va">${SLURM_ARRAY_TASK_ID}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="parallel-computations-using-array-jobs-2" class="slide level2" data-background-color="#bf3eff">
+<h2><span style="color: #68218a;">parallel computations using array jobs</span></h2>
+<h3 id="the-r-file-bsvars.r">The <code>R</code> file: <code>bsvars.R</code></h3>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-8_cd1c4248f0c17f4467f81021b3c7194b">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>args      <span class="ot">=</span> <span class="fu">commandArgs</span>(<span class="at">trailingOnly =</span> <span class="cn">TRUE</span>)  <span class="co"># get arguments</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>iteration <span class="ot">=</span> <span class="fu">as.integer</span>(args[<span class="dv">1</span>])               <span class="co"># first argument is iteration</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">rm</span>(args)                                      <span class="co"># remove what's redundant</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">set.seed</span>(<span class="dv">123</span> <span class="sc">+</span> iteration)                     <span class="co"># set seed for reproducibility        </span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>rw <span class="ot">=</span> <span class="fu">apply</span>(                                   <span class="co"># generate random walk data</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">500</span>), <span class="at">ncol =</span> <span class="dv">2</span>),</span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="dv">2</span>,</span>
+<span id="cb7-9"><a href="#cb7-9"></a>  cumsum</span>
+<span id="cb7-10"><a href="#cb7-10"></a>)</span>
+<span id="cb7-11"><a href="#cb7-11"></a></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="fu">library</span>(bsvars)                               <span class="co"># load bsvars package</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a></span>
+<span id="cb7-14"><a href="#cb7-14"></a>rw <span class="sc">|&gt;</span>                                         <span class="co"># use rw data</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>  specify_bsvar<span class="sc">$</span><span class="fu">new</span>(                          <span class="co"># specify the model</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>    <span class="at">stationary =</span> <span class="fu">rep</span>(<span class="cn">FALSE</span>, <span class="dv">2</span>)                <span class="co"># customise specification</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>  <span class="fu">estimate</span>(<span class="at">S =</span> <span class="dv">100</span>) <span class="sc">|&gt;</span>                        <span class="co"># initial estimation</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a>  <span class="fu">estimate</span>(<span class="at">S =</span> <span class="dv">1000</span>) <span class="ot">-&gt;</span>                       <span class="co"># final estimation</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a>  post                                        <span class="co"># store final estimation output</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a></span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="fu">save</span>(                                         <span class="co"># save the output</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a>  post,                                       <span class="co"># chose post object</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a>  <span class="at">file =</span> <span class="fu">paste0</span>(<span class="st">"bsvars_"</span>, iteration, <span class="st">".rda"</span>) <span class="co"># file name</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="parallel-computations-using-array-jobs-3" class="slide level2" data-background-color="#bf3eff">
+<h2><span style="color: #68218a;">parallel computations using array jobs</span></h2>
+<h3 id="the-workflow-bsvars.slurm">The workflow: <code>bsvars.slurm</code></h3>
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-9_7ceb71ba80d87ad26d28c9695731edf2">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">sshpass</span> <span class="at">-e</span> scp bsvars/bsvars.<span class="pp">*</span> twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/</span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co"># working with bsvars on spartan</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#################################################</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="ex">sshpass</span> <span class="at">-e</span> ssh twozniak@spartan.hpc.unimelb.edu.au</span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="bu">cd</span> /data/projects/punim0093/bsvars/</span>
+<span id="cb8-7"><a href="#cb8-7"></a></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="ex">sbatch</span> bsvars.slurm</span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="ex">squeue</span> <span class="at">-u</span> twozniak</span>
+<span id="cb8-10"><a href="#cb8-10"></a></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co"># Download files</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="fu">scp</span> twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/<span class="pp">*</span>.rda bsvars/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="whats-next" class="slide level2" data-background-color="#bf3eff">
+<h2><span style="color: #68218a;">what’s next</span></h2>
+<ul>
+<li>submit your first single-core job</li>
+<li>design and run your first array job</li>
+<li>attend spartan training sessions</li>
+<li>reach out for help</li>
+<li><code>praise spartan!</code></li>
+</ul>
+</section>
 <section id="section-1" class="slide level2" data-background-color="#bf3eff">
 <h2></h2>
 <p><img data-src="social.png" class="absolute" style="top: 10px; right: 10px; width: 1000px; "></p>
 <div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
