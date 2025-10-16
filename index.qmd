@@ -1,0 +1,77 @@
+---
+title: "" 
+author: ""
+email: "tomasz.wozniak@unimelb.edu.au"
+title-slide-attributes:
+  data-background-color: "#bf3eff"
+number-sections: false
+format: 
+  revealjs: 
+    theme: [simple, theme.scss]
+    slide-number: c
+    transition: concave
+    smaller: true
+    multiplex: true
+execute: 
+  echo: true
+  cache: true
+---
+
+
+```{r}
+#| echo: false
+blu = "#bf3eff"
+yel = "#68218a"
+```
+
+
+##  {background-color="#bf3eff"}
+
+![](hpc.png){.absolute top=40 right=275 width="500"}
+
+
+## <span style='color: #68218a;'>This session</span> {background-color="#bf3eff"}
+
+* share the joy of using HPC for statistical computing
+* share my workflows and practices
+* two strategies for parallel computations
+
+
+
+
+## <span style='color: #68218a;'>About me</span> {background-color="#bf3eff"}
+
+[Tomasz Woźniak](https://github.com/donotdespair)
+
+* senior lecturer at the department of economics
+* develops new statistical methods for empirical macroeconomic research
+* Bayesian structural non-linear dynamic system modelling
+* HPC user since 2008
+
+
+
+## <span style='color: #68218a;'>About me</span> {background-color="#bf3eff"}
+
+[Tomasz Woźniak](https://github.com/donotdespair)
+
+* **R** enthusiast and specialised user for 17 years
+* **C++** coder since 2021
+* associate editor of the [R Journal](https://journal.r-project.org/)
+* author of **R** packages [**bsvars**](https://bsvars.org/bsvars/) and [**bsvarSIGNs**](https://bsvars.org/bsvarSIGNs/)
+
+
+![](bsvars.org.png){.absolute top=350 right=675 width="250"}
+![](bsvars.png){.absolute top=350 right=425 width="250"}
+![](bsvarSIGNs.png){.absolute top=350 right=175 width="250"}
+
+
+
+
+
+
+
+
+
+##  {background-color="#bf3eff"}
+
+![](social.png){.absolute top=10 right=10 width="1000"}
