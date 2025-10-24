@@ -467,10 +467,10 @@
 <section id="basic-workflow-1" class="slide level2" data-background-color="#bf3eff">
 <h2><span style="color: #68218a;">basic workflow</span></h2>
 <h3 id="the-slurm-file-bsvar1.slurm">The <code>slurm</code> file: <code>bsvar1.slurm</code></h3>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-4_a5250227e5e06ac84354547bc8ec387a">
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-4_f684846fb44798ad94df169267ecabf2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#SBATCH -p cascade</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#SBATCH -p sapphire</span></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="co">#SBATCH --time=10:00:00</span></span>
 <span id="cb3-5"><a href="#cb3-5"></a><span class="co">#SBATCH --nodes=1</span></span>
 <span id="cb3-6"><a href="#cb3-6"></a><span class="co">#SBATCH --ntasks=1</span></span>
@@ -531,10 +531,10 @@
 <section id="parallel-computations-using-array-jobs-1" class="slide level2" data-background-color="#bf3eff">
 <h2><span style="color: #68218a;">parallel computations using array jobs</span></h2>
 <h3 id="the-slurm-file-bsvars.slurm">The <code>slurm</code> file: <code>bsvars.slurm</code></h3>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-7_d3c199acbab971264b68365badc22fd1">
+<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-7_19a60052e9f8f1a23fecbd8e120fa9d1">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#SBATCH -p cascade</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#SBATCH -p sapphire</span></span>
 <span id="cb6-4"><a href="#cb6-4"></a><span class="co">#SBATCH --time=10:00:00</span></span>
 <span id="cb6-5"><a href="#cb6-5"></a><span class="co">#SBATCH --nodes=1</span></span>
 <span id="cb6-6"><a href="#cb6-6"></a><span class="co">#SBATCH --ntasks=1</span></span>
@@ -581,7 +581,7 @@
 </section>
 <section id="parallel-computations-using-array-jobs-3" class="slide level2" data-background-color="#bf3eff">
 <h2><span style="color: #68218a;">parallel computations using array jobs</span></h2>
-<h3 id="the-workflow-bsvars.slurm">The workflow: <code>bsvars.slurm</code></h3>
+<h3 id="the-workflow-bsvars.sh-1">The workflow: <code>bsvars.sh</code></h3>
 <div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-9_7ceb71ba80d87ad26d28c9695731edf2">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">sshpass</span> <span class="at">-e</span> scp bsvars/bsvars.<span class="pp">*</span> twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/</span>
 <span id="cb8-2"><a href="#cb8-2"></a></span>

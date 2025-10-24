@@ -2,7 +2,7 @@
 source ~/.bash-profile
 
 # Upload files
-sshpass -e scp bsvars/bsvars.* twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/
+sshpass -e scp bsvar*.* twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/
 
 # working with bsvars on spartan
 #################################################
@@ -13,7 +13,7 @@ sbatch bsvars.slurm
 squeue -u twozniak
 
 # Download files
-scp twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/*.rda bsvars/
+sshpass -e scp twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/*.rda results/
 
 # install the bsvars package on spartan
 #################################################

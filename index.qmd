@@ -113,7 +113,7 @@ exit                                                # exit interactive session
 ```{bash eval=FALSE}
 #!/bin/bash
 
-#SBATCH -p cascade
+#SBATCH -p sapphire
 #SBATCH --time=10:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -187,7 +187,7 @@ scp twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/*.rda bs
 ```{bash eval=FALSE}
 #!/bin/bash
 
-#SBATCH -p cascade
+#SBATCH -p sapphire
 #SBATCH --time=10:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -239,7 +239,7 @@ save(                                         # save the output
 
 ## <span style='color: #68218a;'>parallel computations using array jobs</span> {background-color="#bf3eff"}
 
-### The workflow: `bsvars.slurm`
+### The workflow: `bsvars.sh`
 ```{bash eval=FALSE}
 sshpass -e scp bsvars/bsvars.* twozniak@spartan.hpc.unimelb.edu.au:/data/projects/punim0093/bsvars/
 

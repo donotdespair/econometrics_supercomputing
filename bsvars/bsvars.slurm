@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -p cascade
+#SBATCH -p sapphire
 #SBATCH --time=10:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
