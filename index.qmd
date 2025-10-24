@@ -74,9 +74,9 @@ knitr::opts_chunk$set(
 ![](bsvarSIGNs.png){.absolute top=350 right=175 width="250"}
 
 
+## <span style='color: #68218a;'>why I'm here</span> {background-color="#bf3eff"}
 
-
-
+![](joe.png)
 
 # <span style='color: #68218a;'>the first steps</span> {background-color="#bf3eff"}
 
